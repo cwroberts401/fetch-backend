@@ -16,7 +16,6 @@ If `API_BASE_URL` is not set, a default value of `http://localhost:5000` is used
 
 
 ## Endpoints
-&nbsp;
 
 #### GET /points
 Sending a GET request to `/points` endpoint should return an object where the keys are unique payers and values are their point totals.
@@ -45,6 +44,7 @@ expected response would be;
     { "payer": "EXAMPLE", "points": 200 }
 ```
 Points can also be negative value, but there must be enough payer points already in bank. No payer can hold a negative point value
+
 &nbsp;
 
 #### PUT /points
