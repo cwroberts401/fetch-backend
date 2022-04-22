@@ -17,7 +17,8 @@ If `API_BASE_URL` is not set, a default value of `http://localhost:5000` is used
 
 ## Endpoints
 
-##### GET /points
+
+#### GET /points
 Sending a GET request to `/points` endpoint should return an object where the keys are unique payers and values are their point totals.
 
 for example;
@@ -25,7 +26,8 @@ for example;
     { "HONDA": 5000, "DANNON": 400 }
 ```
 
-**POST** /points
+
+#### POST /points
 Sending a POST request to `/point` endpoint adds a points entry to the points bank.
 
 POST requests require the following fields:
@@ -44,7 +46,8 @@ expected response would be;
 ```
 Points can also be negative value, but there must be enough payer points already in bank. No payer can hold a negative point value
 
-**PUT** /points
+
+#### PUT /points
 sending a PUT request to `/points` endpoint deducts points from the points bank:
 
 format the PUT request as follows;
