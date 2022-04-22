@@ -17,7 +17,7 @@ If `API_BASE_URL` is not set, a default value of `http://localhost:5000` is used
 
 ## Endpoints
 
-#### GET /points
+### GET /points
 Sending a GET request to `/points` endpoint should return an object where the keys are unique payers and values are their point totals.
 
 for example;
