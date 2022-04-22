@@ -2,6 +2,7 @@
 
 A basic back-end application used to keep track of Fetch Rewards points. Built using Node.js and Express. 
 
+&nbsp;
 
 ## Setup
 
@@ -14,6 +15,7 @@ Set the `API_BASE_URL` environment variable to the base url for the API.
 
 If `API_BASE_URL` is not set, a default value of `http://localhost:5000` is used.
 
+&nbsp;
 
 ## Endpoints
 
@@ -62,7 +64,7 @@ expected response;
         { "payer": "DANNON", "points" -200 }
     ]
 ```
-Points are deducted in the order based on timestamp, oldest to newest. Single payers points values can never be negative. 
+Points are deducted in the order based on timestamp, oldest to newest. Single payers point values can never be negative. 
 
 &nbsp;
 
