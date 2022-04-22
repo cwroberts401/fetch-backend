@@ -4,7 +4,7 @@ const transactionRouter = require('../src/addTransaction/addTransaction.router')
 const makeTestApp = require('./make-test-app');
 const { expect } = require('@jest/globals');
 
-const ATTACHED_PATH = '/addTransaction';
+const ATTACHED_PATH = '/points';
 
 const app = makeTestApp(ATTACHED_PATH, transactionRouter);
 

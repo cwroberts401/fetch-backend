@@ -8,7 +8,7 @@ const pts = require(path.resolve('src/data/points-data'));
  * @returns {object} key is payer and value is point total.
  */
 function groupPointsByPayer(entries, beforeDate) {
-	let ans = {};
+	const ans = {};
 	let entriesBeforeDate = entries;
 	if (beforeDate) {
 		entriesBeforeDate = entries.filter((e) => e.timestamp < beforeDate);
@@ -80,10 +80,6 @@ function timestampValueOk(req, res, next) {
 	next();
 }
 
-function allData(req, res) {
-	res.status(200).json({ data: pts });
-}
-
 function add(req, res, next) {
 	let { data: { payer, points, timestamp } = {} } = req.body;
 	const addPts = {
@@ -117,6 +113,8 @@ function add(req, res, next) {
 	res.status(201).json({ data: displayPoints });
 }
 
+/**  validates that there are enough points to complete transaction
+     used when adding negative points and spending points **/
 function enoughPts(req, res, next) {
 	let { data: { points, payer, timestamp } = {} } = req.body;
 
@@ -169,6 +167,5 @@ function subtract(req, res) {
 module.exports = {
 	list,
 	add: [ payerValueOk, pointsValueOk, timestampValueOk, enoughPts, add ],
-	allData,
 	subtract: [ pointsValueOk, enoughPts, subtract ]
 };

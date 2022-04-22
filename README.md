@@ -29,7 +29,7 @@ expected response;
 &nbsp;
 
 ### POST /points
-Sending a POST request to `/point` endpoint adds a points entry to the points bank.
+Sending a POST request to `/points` endpoint adds a points entry to the points bank.
 
 POST requests require the following fields:
 - "payer" -- must be typeof "string"
