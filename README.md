@@ -15,16 +15,34 @@ If `API_BASE_URL` is not set, a default value of `http://localhost:5000` is used
 
 GET /points
 * response 200 (text/plain) returns an object with unique payers as keys and point totals as values
+```md
+    { "HONDA": 5000, "DANNON": 400 }
+```
 
 POST /points
 * sending a POST request with a body as follows;
 
 ```md
-    { PAYER: "EXAMPLE", POINTS: 200, TIMESTAMP: "2020-11-02T14:00:00Z" }
+    { "payer": "EXAMPLE", "points": 200, "timestamp": "2020-11-02T14:00:00Z" }
 ```
 adds points to the database.
-* response 200 (text/plain) returns an object 
+
+* expected response to a valid request is;
+201 (created)
+
+```md
+    { "payer": "EXAMPLE", "points": 200 }
+```
 
 PUT /points
 * sending a PUT request with a body such as { POINTS: 200 }:
+```md
+    { "points": 800 }
+```
+
 * response 200 (text/plain) returns an object detailing how many point were deducted from each payer
+```md
+    [
+        { "payer": "HONDA", "points" -600 },
+        { "payer": "DANNON", "points" -200 }
+    ]
