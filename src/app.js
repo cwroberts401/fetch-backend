@@ -1,16 +1,21 @@
 const express = require("express");
+const cors = require("cors");
+
+//const errorHandler = require("./errors/errorHandler");
+const notFound = require("./errors/notFound");
+const addTransaction = require("./addTransaction/addTransaction.router");
+const errorHandler = require("./errors/errorHandler");
+
 const app = express();
 
+app.use(cors());
+app.use(express.json());
 
-// Not found handler
-app.use((request, response, next) => {
-  next(`Not found: ${request.originalUrl}`);
-});
+app.use("/addTransaction", addTransaction);
 
-// Error handler
-app.use((error, request, response, next) => {
-  console.error(error);
-  response.send(error);
-});
+app.use(notFound);
+app.use(errorHandler);
+
+//app.use(errorHandler);
 
 module.exports = app;
