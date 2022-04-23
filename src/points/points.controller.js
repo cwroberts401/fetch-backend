@@ -94,7 +94,6 @@ function add(req, res, next) {
 	if (points < 0) {
 		let found = pts.find((e) => e.payer === payer);
 		while (points !== 0) {
-			console.log(found);
 			if (found.points < points) {
 				points += found.points;
 				found.points = 0;
@@ -125,7 +124,7 @@ function enoughPts(req, res, next) {
 				return next({
 					status: 400,
 					message: `Not enough points to complete transaction. ${payer} only has ${total[payer] ||
-						0} points available.`
+						0} points available on ${timestamp}.`
 				});
 			}
 		}
@@ -143,17 +142,29 @@ function enoughPts(req, res, next) {
 	}
 }
 
+function pointsPositive(req, res, next) {
+	let { data: { points } = {} } = req.body;
+
+	if (points < 0) {
+		return next({
+			status: 400,
+			message: `Number of points to spend must be a positive interger`
+		});
+	}
+	next();
+}
+
 function subtract(req, res) {
 	let { data: { points } = {} } = req.body;
 	const ptsDeducted = [];
 
 	let i = 0;
 	while (points !== 0) {
-		if (pts[i].points < points) {
+		if (pts[i].points < points && pts[i].points !== 0) {
 			points -= pts[i].points;
 			ptsDeducted.push({ payer: pts[i].payer, points: -Math.abs(pts[i].points) });
 			pts[i].points = 0;
-		} else {
+		} else if (pts[i].points >= points) {
 			ptsDeducted.push({ payer: pts[i].payer, points: -Math.abs(points) });
 			pts[i].points -= points;
 			points = 0;
@@ -167,5 +178,5 @@ function subtract(req, res) {
 module.exports = {
 	list,
 	add: [ payerValueOk, pointsValueOk, timestampValueOk, enoughPts, add ],
-	subtract: [ pointsValueOk, enoughPts, subtract ]
+	subtract: [ pointsValueOk, pointsPositive, enoughPts, subtract ]
 };

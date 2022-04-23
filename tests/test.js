@@ -1,12 +1,12 @@
 const request = require('supertest');
 const pts = require('../src/data/points-data');
-const transactionRouter = require('../src/addTransaction/addTransaction.router');
+const pointsRouter = require('../src/points/points.router');
 const makeTestApp = require('./make-test-app');
 const { expect } = require('@jest/globals');
 
 const ATTACHED_PATH = '/points';
 
-const app = makeTestApp(ATTACHED_PATH, transactionRouter);
+const app = makeTestApp(ATTACHED_PATH, pointsRouter);
 
 describe('add transaction route', () => {
 	test('adds transaction', async () => {

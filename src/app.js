@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const notFound = require("./errors/notFound");
-const addTransaction = require("./addTransaction/addTransaction.router");
+const addTransaction = require("./points/points.router");
 const errorHandler = require("./errors/errorHandler");
 
 const app = express();
