@@ -45,7 +45,9 @@ expected response;
 ```md
     { "payer": "EXAMPLE", "points": 200 }
 ```
-Points can also be negative value, but there must be enough payer points already in bank. No payer can hold a negative point value
+Points can also be negative value, but there must be enough payer points already in bank. No payer can hold a negative point value.
+
+note that if you get an error that there are "not enough points available" when adding a negative transaction. Verify timestamps, positive point transaction must have earlier timestamp
 
 &nbsp;
 
