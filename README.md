@@ -38,7 +38,7 @@ POST requests require the following fields:
 
 format the POST request as follows;
 ```md
-    { "payer": "EXAMPLE", "points": 200, "timestamp": "2020-11-02T14:00:00Z" }
+    { "data": { "payer": "EXAMPLE", "points": 200, "timestamp": "2020-11-02T14:00:00Z" }}
 ```
 
 expected response;
@@ -56,7 +56,7 @@ sending a PUT request to `/points` endpoint deducts points from the points bank:
 
 format the PUT request as follows;
 ```md
-    { "points": 800 }
+    { "data": { "points": 800 }}
 ```
 
 expected response;
